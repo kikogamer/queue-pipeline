@@ -20,3 +20,25 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.produto {
+    margin-bottom: 30px;
+}
+
+.produto img {
+    max-width: 100%;
+    height: auto;
+}
+
+.produto-checkout {
+    margin-bottom: 15px;
+}
+
+.produto-checkout img {
+    max-width: 100px;
+    height: auto;
+}
+
+.total {
+    font-weight: bold;
+}
