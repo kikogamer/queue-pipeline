@@ -69,8 +69,10 @@
     </div>
 </div>
 
+<script src="~/js/carrinho.js" asp-append-version="true"></script>
 <script>
-    var carrinho = [];
+
+    var carrinho = getCarrinho();
 
     function adicionarCarrinho(produto, preco) {
 
@@ -85,6 +87,7 @@
         }
 
         atualizarCarrinho();
+        setCarrinho(carrinho);
     }
 
     function atualizarCarrinho() {
@@ -142,6 +145,7 @@
         }
 
         totalizaCarrinho();
+        setCarrinho(carrinho);
     }
 
     function removeItemCarrinho(item) {
@@ -150,6 +154,7 @@
         
         const idx = carrinho.indexOf(item);
         carrinho.splice(idx, 1);
+        setCarrinho(carrinho);
     }
 
     function totalizaCarrinho() {
