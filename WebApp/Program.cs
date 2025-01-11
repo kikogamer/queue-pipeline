@@ -1,5 +1,6 @@
 using App.Core.Data;
 using Microsoft.EntityFrameworkCore;
+using WebApp.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +10,12 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
     options.UseNpgsql(connectionString);
 });
 
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.ResolveDependencies();
 
 var app = builder.Build();
 

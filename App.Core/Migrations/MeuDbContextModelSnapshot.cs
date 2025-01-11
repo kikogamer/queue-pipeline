@@ -35,6 +35,9 @@ namespace App.Core.Migrations
                     b.Property<string>("Imagem")
                         .HasColumnType("varchar(255)");
 
+                    b.Property<string>("Nome")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<decimal>("Preco")
                         .HasColumnType("numeric");
 

@@ -1,0 +1,17 @@
+﻿@using WebApp.ViewModels
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ProdutoViewModel
+
+<div class="col-md-4 produto">
+    <div class="card">
+        <img src="~/images/@Model.Imagem" class="card-img-top" alt="Produto 1">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Nome</h5>
+            <p class="card-text">@Model.Descricao</p>
+            <p><strong>R$ @Model.Preco</strong></p>
+            <button class="btn btn-primary" onclick="adicionarCarrinho('@Model.Id', '@Model.Nome', '@Model.Imagem', @Model.Preco)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>

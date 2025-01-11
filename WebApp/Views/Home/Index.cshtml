@@ -1,48 +1,27 @@
-﻿@{
+﻿@using WebApp.ViewModels
+@{
     ViewData["Title"] = "Produtos";
 }
+@model List<ProdutoViewModel>
 
 <div class="container mt-5">
-    <div class="row">
-        <!-- Produto 1 -->
-        <div class="col-md-4 produto">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Produto 1">
-                <div class="card-body">
-                    <h5 class="card-title">Produto 1</h5>
-                    <p class="card-text">Descrição breve do produto 1.</p>
-                    <p><strong>R$ 50,00</strong></p>
-                    <button class="btn btn-primary" onclick="adicionarCarrinho('Produto 1', 50)">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-        </div>
 
-        <!-- Produto 2 -->
-        <div class="col-md-4 produto">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Produto 2">
-                <div class="card-body">
-                    <h5 class="card-title">Produto 2</h5>
-                    <p class="card-text">Descrição breve do produto 2.</p>
-                    <p><strong>R$ 100,00</strong></p>
-                    <button class="btn btn-primary" onclick="adicionarCarrinho('Produto 2', 100)">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-        </div>
+    @{
+        int row = 0;
+    }
 
-        <!-- Produto 3 -->
-        <div class="col-md-4 produto">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Produto 3">
-                <div class="card-body">
-                    <h5 class="card-title">Produto 3</h5>
-                    <p class="card-text">Descrição breve do produto 3.</p>
-                    <p><strong>R$ 150,00</strong></p>
-                    <button class="btn btn-primary" onclick="adicionarCarrinho('Produto 3', 150)">Adicionar ao Carrinho</button>
-                </div>
-            </div>
+    @while (row < Model.Count)
+    {
+        <div class="row">
+            @for (int i = 0; i < 3; i++)
+            {
+                if (row >= Model.Count) break;
+                
+                @await Html.PartialAsync("_Produto", Model[row]);
+                row++;
+            }
         </div>
-    </div>
+    }
 </div>
 
 <!-- Carrinho de Compras Modal -->
@@ -74,16 +53,15 @@
 
     var carrinho = getCarrinho();
 
-    function adicionarCarrinho(produto, preco) {
+    function adicionarCarrinho(id, produto, imagem, preco) {
 
-        const objProduto = carrinho.find((item) => item.produto === produto);
+        const objProduto = carrinho.find((item) => item.id === id);
 
         if (objProduto) {
             objProduto.quantidade++;
         }
         else {
-            const newId = carrinho.length +1;
-            carrinho.push({ id: newId, produto: produto, preco: preco, quantidade: 1 });
+            carrinho.push({ id: id, produto: produto, imagem: imagem, preco: preco, quantidade: 1 });
         }
 
         atualizarCarrinho();
@@ -103,9 +81,9 @@
                 listItem.className = "d-flex list-group-item";
                 itensCarrinho.appendChild(listItem);
                 var cardImage = document.createElement("div");
-                cardImage.className = "card";
+                cardImage.className = "card w-50";
                 var image = document.createElement("img");
-                image.src = "https://via.placeholder.com/300x200";
+                image.src = "/images/"+ item.imagem;
                 cardImage.appendChild(image);
                 listItem.appendChild(cardImage);
                 var description = document.createElement("div");
@@ -119,7 +97,7 @@
                 itemCarrinho.appendChild(produto);
                 var preco = document.createElement("div");
                 preco.className = "fw-bold";
-                preco.textContent = "R$ " + item.preco;
+                preco.textContent = "R$ " + item.preco.toFixed(2);
                 itemCarrinho.appendChild(preco);
                 var quantidade = document.createElement("p");
                 quantidade.innerHTML = "<div><label for='quantity'>Quantidade</label><input data-id='"+ item.id +"' class='form-control mt-2' type='number' name='quantity' value="+ item.quantidade +" style='width: 80px'/></div>";
@@ -167,7 +145,7 @@
         }
 
         var totalCarrinho = document.getElementById("totalCarrinho");
-        totalCarrinho.textContent = "Total: R$ "+ total;
+        totalCarrinho.textContent = "Total: R$ "+ total.toFixed(2);
     }
 
     function fecharModal() {

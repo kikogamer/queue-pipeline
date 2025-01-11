@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class Produtos : Migration
+    public partial class Produto : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,6 +16,7 @@ namespace App.Core.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(100)", nullable: true),
                     Descricao = table.Column<string>(type: "varchar(200)", nullable: false),
                     Imagem = table.Column<string>(type: "varchar(255)", nullable: true),
                     Preco = table.Column<decimal>(type: "numeric", nullable: false)

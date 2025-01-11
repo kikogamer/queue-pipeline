@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace App.Core.Migrations
 {
     [DbContext(typeof(MeuDbContext))]
-    [Migration("20250105224104_Produtos")]
-    partial class Produtos
+    [Migration("20250108020942_Produto")]
+    partial class Produto
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace App.Core.Migrations
 
                     b.Property<string>("Imagem")
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("numeric");

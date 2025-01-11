@@ -20,6 +20,10 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./scripts/create-database.sql:/docker-entrypoint-initdb.d/01-create-database.sql
+      - ./scripts/seed.sql:/docker-entrypoint-initdb.d/01-populate-database.sql
 
   pgAdmin:
     image: dpage/pgadmin4
@@ -29,3 +33,9 @@ services:
       PGADMIN_LISTEN_PORT: 7000
     ports:
       - "7000:7000"
+    volumes:
+      - pgAdmin:/var/lib/pgadmin
+
+volumes:
+  pgAdmin:    
+  postgres:

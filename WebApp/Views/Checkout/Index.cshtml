@@ -57,7 +57,7 @@
         carrinho.forEach(function(item) {
             var itemCarrinho = document.createElement("div");
             itemCarrinho.classList.add("produto-checkout");
-            itemCarrinho.innerHTML = `<img src="https://via.placeholder.com/100x100" alt="${item.produto}">
+            itemCarrinho.innerHTML = `<img src="images/${item.imagem}" alt="${item.produto}">
                                       <span>${item.produto} - Qtd: ${item.quantidade} - R$ ${item.preco}</span>`;
             resumoCarrinho.appendChild(itemCarrinho);
             total += item.preco;
