@@ -5,7 +5,7 @@ namespace App.Core.Data
 {
     public class MeuDbContext : DbContext
     {
-        public DbSet<Produto> Produtos{ get; set; }
+        public DbSet<Produto> Produtos { get; set; }
 
         public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options)
         {

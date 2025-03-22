@@ -1,7 +1,6 @@
 services:
-  webapp:
-    image: ${DOCKER_REGISTRY-}webapp
+  webapp.server:
+    image: ${DOCKER_REGISTRY-}webappserver
     build:
       context: .
-      dockerfile: WebApp/Dockerfile
-    
+      dockerfile: WebApp/WebApp.Server/Dockerfile
