@@ -8,7 +8,12 @@ namespace WebApp.Server.Configuration
     {
         public AutoMapperConfig()
         {
-            CreateMap<Produto, ProdutoViewModel>();
+            CreateMap<Produto, ProdutoViewModel>().ReverseMap();
+            CreateMap<PedidoViewModel, Pedido>().ReverseMap();
+            CreateMap<PedidoItem, PedidoItemViewModel>()
+                .ForMember(dest => dest.ProdutoId, opt => opt.MapFrom(src => src.ProdutoId))
+                .ReverseMap()
+                    .ForMember(dest => dest.ProdutoId, opt => opt.MapFrom(src => src.ProdutoId));
         }
     }
 }

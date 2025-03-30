@@ -15,13 +15,11 @@ const ProductDetail: React.FC<{ produto: Produto }> = ({ produto }) => {
         navigate("/");
     };
 
-    const img = `/produtos/${produto.imagem}`;
-
     return (
         <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
             <img
                 alt={produto.nome}
-                src={img}
+                src={produto.imagemUrl}
                 className="aspect-2/3 w-full rounded-lg bg-gray-100 object-cover sm:col-span-4 lg:col-span-5"
             />
             <div className="sm:col-span-8 lg:col-span-7">

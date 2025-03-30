@@ -10,7 +10,7 @@ const ProductsPage: React.FC = () => {
       const response = await fetch('api/v1/produtos');
       if (response.ok) {
         const data = await response.json();
-        setProducts(data.map((p: Produto) => Object.assign(new Produto(), p)));
+        setProducts(data.$values.map((p: Produto) => Object.assign(new Produto(), p)));
       }
     }
 

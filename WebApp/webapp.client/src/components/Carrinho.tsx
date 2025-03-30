@@ -51,7 +51,7 @@ const Carrinho: React.FC = () => {
                                                             <div>
                                                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                                                     <h3>
-                                                                        <a href={item.produto.imagemUrl}>{item.produto.nome}</a>
+                                                                        <a href={`/produtos/detail/${item.produto.id}`}>{item.produto.nome}</a>
                                                                     </h3>
                                                                     <p className="ml-4">R$ {item.produto.preco.toFixed(2)}</p>
                                                                 </div>
@@ -82,7 +82,7 @@ const Carrinho: React.FC = () => {
                                     <p className="mt-0.5 text-sm text-gray-500">Frete e impostos calculados na finalização da compra.</p>
                                     <div className="mt-6">
                                         <a
-                                            href="#"
+                                            href="/checkout"
                                             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700"
                                         >
                                             Checkout

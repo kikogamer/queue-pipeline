@@ -6,6 +6,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import Header from './components/Header';
 import { CarrinhoProvider } from './context/CarrinhoContext';
 import Carrinho from './components/Carrinho';
+import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
             <Header />
             <Router>
                 <Routes>
+                    <Route path="/checkout" Component={CheckoutPage} />
                     <Route path="/produtos" Component={ProductsPage} />
                     <Route path="/produtos/detail/:productId" Component={ProductDetailPage} />
                     <Route path="/" Component={ProductsPage} />

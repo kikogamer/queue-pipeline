@@ -5,7 +5,7 @@ import { Produto } from "../models/produto";
 const addItem = (state: typeof initialState, item: CarrinhoItem) => {
   const newCarrinho = [...state.carrinho];
   const index = newCarrinho.findIndex((ci: CarrinhoItem) => ci.produto.id === item.produto.id);
-  console.log(item);
+  
   if (index !== -1) {
     newCarrinho[index] = { ...newCarrinho[index], quantidade: newCarrinho[index].quantidade + 1 };
     return newCarrinho;
@@ -17,6 +17,18 @@ const addItem = (state: typeof initialState, item: CarrinhoItem) => {
 const getCarrinho = () => {
   const data = JSON.parse(localStorage.getItem("carrinho") || "[]");
   return data.map((item: CarrinhoItem) => new CarrinhoItem(Object.assign(new Produto(), item.produto), item.quantidade));
+}
+
+const updateQty = (state: typeof initialState, produto: Produto, quantidade: number) => {
+  const newCarrinho = [...state.carrinho];
+  const index = newCarrinho.findIndex((ci: CarrinhoItem) => ci.produto.id === produto.id);
+  
+  if (index !== -1) {
+    newCarrinho[index] = { ...newCarrinho[index], quantidade: quantidade };
+    return newCarrinho;
+  }
+
+  return state.carrinho;
 }
 
 const initialState = {
@@ -32,6 +44,8 @@ const carrinhoReducer = (state: typeof initialState, action: { type: string; pay
       return { ...state, carrinho: state.carrinho.filter((item: CarrinhoItem) => item !== action.payload) };
     case "TOGGLE_CART": 
       return { ...state, isVisible: !state.isVisible };
+    case "UPDATE_CART":
+      return { ...state, carrinho: updateQty(state, action.payload.produto, action.payload.quantidade) };
     default:
       return state;
   }
