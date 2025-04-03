@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace App.Core.Models
+namespace App.Core.Business.Models
 {
     public class Pedido : Entity
     {

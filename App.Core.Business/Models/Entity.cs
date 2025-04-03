@@ -1,4 +1,4 @@
-﻿namespace App.Core.Models
+﻿namespace App.Core.Business.Models
 {
     public abstract class Entity
     {

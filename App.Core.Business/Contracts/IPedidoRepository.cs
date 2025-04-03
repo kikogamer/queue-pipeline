@@ -1,6 +1,6 @@
-﻿using App.Core.Models;
+﻿using App.Core.Business.Models;
 
-namespace App.Core.Interfaces
+namespace App.Core.Business.Contracts
 {
     public interface IPedidoRepository : IRepository<Pedido>
     {

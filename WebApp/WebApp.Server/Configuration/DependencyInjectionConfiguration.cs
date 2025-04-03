@@ -1,6 +1,7 @@
-﻿using App.Core.Interfaces;
+﻿using App.Adapters.Amqp.Services;
+using App.Core.Business.Contracts;
+using App.Core.Business.Services;
 using App.Core.Repository;
-using App.Core.Services;
 
 namespace WebApp.Server.Configuration
 {
@@ -8,6 +9,8 @@ namespace WebApp.Server.Configuration
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
+            services.AddScoped<IAmqpPedidoService, AmqpPedidoService>();
+            
             services.AddScoped<IPedidoService, PedidoService>();
 
             services.AddScoped<IProdutoRepository, ProdutoRepository>();

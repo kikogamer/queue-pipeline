@@ -1,7 +1,7 @@
-﻿using App.Core.Models;
+﻿using App.Core.Business.Models;
 using System.Linq.Expressions;
 
-namespace App.Core.Interfaces
+namespace App.Core.Business.Contracts
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity
     {

@@ -1,4 +1,4 @@
-﻿namespace App.Core.Models
+﻿namespace App.Core.Business.Models
 {
     public class Produto : Entity
     {

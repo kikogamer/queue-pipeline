@@ -4,6 +4,13 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - RABBITMQ__HOSTNAME=rabbitmq
+      - RABBITMQ__PORT=5672
+      - RABBITMQ__USERNAME=logUser
+      - RABBITMQ__PASSWORD=logPwd
+      - RABBITMQ__VIRTUALHOST=main
+      - RABBITMQ__ConsumerDispatchConcurrency=12
+      - RABBITMQ__ClientProvidedName=WebApp
     ports:
       - "8080:8080"
       - "8081:8081"
@@ -12,6 +19,8 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - consumer
 
   postgres:
     image: postgres:17.2-alpine
@@ -26,6 +35,8 @@ services:
       - postgres:/var/lib/postgresql/data
       - ./scripts/create-database.sql:/docker-entrypoint-initdb.d/01-create-database.sql
       - ./scripts/seed.sql:/docker-entrypoint-initdb.d/01-populate-database.sql
+    networks:
+      - consumer
 
   pgAdmin:
     image: dpage/pgadmin4
@@ -37,7 +48,24 @@ services:
       - "7000:7000"
     volumes:
       - pgAdmin:/var/lib/pgadmin
+    networks:
+      - consumer
+
+  rabbitmq:
+    hostname: rabbitmq1
+    build: ./rabbitmq
+    ports:
+      - "15672:15672" #Management
+      - "5672:5672" #AMQP
+    volumes:
+      - mq_data:/var/lib/rabbitmq/mnesia
+    networks:
+      - consumer
 
 volumes:
   pgAdmin:    
   postgres:
+  mq_data:
+  
+networks:
+  consumer:

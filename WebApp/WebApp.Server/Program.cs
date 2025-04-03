@@ -1,7 +1,6 @@
 using App.Core.Data;
 using Asp.Versioning.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.ConstrainedExecution;
 using WebApp.Server.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +14,7 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 builder.Services.AddWebApiConfiguration(builder.Configuration);
 builder.Services.AddSwaggerConfiguration();
+builder.Services.AddRabbitMQConfiguration(cfg => cfg.WithConfiguration(builder.Configuration));
 
 // Add services to the container.
 

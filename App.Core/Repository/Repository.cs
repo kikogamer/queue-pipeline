@@ -1,6 +1,6 @@
-﻿using App.Core.Data;
-using App.Core.Interfaces;
-using App.Core.Models;
+﻿using App.Core.Business.Contracts;
+using App.Core.Business.Models;
+using App.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

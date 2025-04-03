@@ -1,5 +1,5 @@
-﻿using App.Core.Interfaces;
-using App.Core.Models;
+﻿using App.Core.Business.Contracts;
+using App.Core.Business.Models;
 using Asp.Versioning;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;

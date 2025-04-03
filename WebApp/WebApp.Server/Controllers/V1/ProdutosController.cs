@@ -1,4 +1,4 @@
-﻿using App.Core.Interfaces;
+﻿using App.Core.Business.Contracts;
 using Asp.Versioning;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
