@@ -1,8 +1,8 @@
-﻿using App.Adapters;
-using App.Adapters.Serialization;
+﻿using App.Adapters.Serialization;
+using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
 
-namespace WebApp.Server.Configuration
+namespace App.Adapters.Amqp.Configuration
 {
     public static class RabbitMQConfiguration
     {

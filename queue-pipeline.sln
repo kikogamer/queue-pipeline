@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Adapters.Amqp", "App.Ad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Core.Business", "App.Core.Business\App.Core.Business.csproj", "{FD2B1272-653E-43E9-AD12-B11CCE432CD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer.Pedido", "Consumer.Pedido\Consumer.Pedido.csproj", "{9E1B282F-93E7-419C-A900-3E9D15EAE9BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{FD2B1272-653E-43E9-AD12-B11CCE432CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD2B1272-653E-43E9-AD12-B11CCE432CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD2B1272-653E-43E9-AD12-B11CCE432CD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E1B282F-93E7-419C-A900-3E9D15EAE9BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1B282F-93E7-419C-A900-3E9D15EAE9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1B282F-93E7-419C-A900-3E9D15EAE9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1B282F-93E7-419C-A900-3E9D15EAE9BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

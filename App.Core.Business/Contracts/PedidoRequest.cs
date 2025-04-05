@@ -1,12 +1,14 @@
-﻿namespace App.Core.Business.Contracts
+﻿using System.Text.Json.Serialization;
+
+namespace App.Core.Business.Contracts
 {
     public class PedidoRequest
     {
         public Guid Id{ get; }
 
-        public PedidoRequest(Guid pedidoId)
+        public PedidoRequest(Guid id)
         {
-            Id = pedidoId;
+            Id = id;
         }
     }
 }

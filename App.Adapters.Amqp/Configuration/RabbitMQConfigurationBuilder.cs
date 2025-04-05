@@ -1,6 +1,8 @@
-﻿using RabbitMQ.Client;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using RabbitMQ.Client;
 
-namespace WebApp.Server.Configuration
+namespace App.Adapters.Amqp.Configuration
 {
     public class RabbitMQConfigurationBuilder
     {
@@ -26,7 +28,19 @@ namespace WebApp.Server.Configuration
 
             _services.AddSingleton(sp =>
             {
+                System.Diagnostics.Debug.WriteLine("Trying to create a connection with RabbitMQ");
+
                 IConnection connection = sp.GetRequiredService<ConnectionFactory>().CreateConnectionAsync().GetAwaiter().GetResult();
+
+                Console.WriteLine(@$"Connected on RabbitMQ '{connection}' with name '{connection.ClientProvidedName}'. 
+....Local Port: {connection.LocalPort}
+....Remote Port: {connection.RemotePort}
+....cluster_name: {connection.ServerProperties["cluster_name"]}
+....copyright: {connection.ServerProperties["copyright"]}
+....information: {connection.ServerProperties["information"]}
+....platform: {connection.ServerProperties["platform"]}
+....product: {connection.ServerProperties["product"]}
+....version: {connection.ServerProperties["version"]}");
 
                 return connection;
             });

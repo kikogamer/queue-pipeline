@@ -4,3 +4,9 @@ services:
     build:
       context: .
       dockerfile: WebApp/WebApp.Server/Dockerfile
+
+  consumer.pedido:
+    image: ${DOCKER_REGISTRY-}consumer-pedido
+    build:
+      context: .
+      dockerfile: Consumer.Pedido/Dockerfile

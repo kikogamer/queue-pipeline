@@ -1,10 +1,10 @@
 ﻿using RabbitMQ.Client.Events;
-using RabbitMQ.Client;
 
 namespace App.Adapters.Serialization
 {
     public interface IAmqpSerializer
     {
+        TResponse? Deserialize<TResponse>(BasicDeliverEventArgs eventArgs);
         byte[] Serialize<T>(T objectToSerialize);
     }
 }

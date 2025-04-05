@@ -8,11 +8,11 @@ namespace App.Adapters.Amqp.Services
         {
         }
 
-        protected override string ExchangeName => "pedido_service";
+        protected override string ExchangeName => "";
 
         public async Task Add(PedidoRequest pedidoRequest)
         {
-            await SendAsync(request: pedidoRequest, routingKey: "create");
+            await SendAsync(request: pedidoRequest, routingKey: "pedido_create_queue");
         }
     }
 }

@@ -1,3 +1,4 @@
+using App.Adapters.Amqp.Configuration;
 using App.Core.Data;
 using Asp.Versioning.ApiExplorer;
 using Microsoft.EntityFrameworkCore;

@@ -21,6 +21,22 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - consumer
+    depends_on:
+      - consumer.pedido
+      - postgres
+
+  consumer.pedido:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RABBITMQ__PREFETCHCOUNT=10
+      - RABBITMQ__HOSTNAME=rabbitmq
+      - RABBITMQ__PORT=5672
+      - RABBITMQ__USERNAME=logUser
+      - RABBITMQ__PASSWORD=logPwd
+      - RABBITMQ__VIRTUALHOST=main
+      - RABBITMQ__ClientProvidedName=Consumer.Pedido
+    networks:
+      - consumer
 
   postgres:
     image: postgres:17.2-alpine
