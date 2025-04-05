@@ -1,12 +1,9 @@
-﻿using App.Core.Business.Contracts;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Core.Business.Models
 {
     public class Pedido : Entity
     {
-        private IPedidoState _status;
-
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Numero { get; set; }
         public string? Cliente { get; set; }
@@ -22,17 +19,18 @@ namespace App.Core.Business.Models
         public decimal Frete { get; set; }
         public decimal Imposto { get; set; }
         public List<PedidoItem> Itens { get; set; }
+        public PedidoState Status { get; set; }
 
         public Pedido()
         {
             Data = DateTime.Now;
             Itens = new List<PedidoItem>();
-            _status = new PedidoEmAndamento();
+            Status = new PedidoEmAndamento();
         }
 
         public void Processar()
         {
-            _status = _status.Processar(this);
+            Status.Processar(this);
         }
     }
 }

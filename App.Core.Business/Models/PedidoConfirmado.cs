@@ -1,10 +1,8 @@
-﻿using App.Core.Business.Contracts;
-
-namespace App.Core.Business.Models
+﻿namespace App.Core.Business.Models
 {
-    public class PedidoConfirmado : IPedidoState
+    public class PedidoConfirmado : PedidoState
     {
-        public IPedidoState Processar(Pedido pedido)
+        public override void Processar(Pedido pedido)
         {
             throw new InvalidOperationException("O pedido já está confirmado!");
         }

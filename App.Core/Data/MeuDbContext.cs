@@ -21,9 +21,26 @@ namespace App.Core.Data
                     .Where(p => p.ClrType == typeof(string))))
                 property.SetColumnType("varchar(100)");
 
+            modelBuilder.Entity<Pedido>()
+                .Property(p => p.Status)
+                .HasConversion(
+                    p => p.GetType().Name,
+                    p => GetPedidoState(p)
+                );
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MeuDbContext).Assembly);
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        private static PedidoState GetPedidoState(string state)
+        {
+            return state switch
+            {
+                nameof(PedidoEmAndamento) => new PedidoEmAndamento(),
+                nameof(PedidoConfirmado) => new PedidoConfirmado(),
+                _ => throw new InvalidOperationException($"Status do Pedido inválido: {state}")
+            };
         }
     }
 }
