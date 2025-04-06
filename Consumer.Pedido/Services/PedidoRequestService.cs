@@ -4,11 +4,26 @@ namespace Consumer.Pedido.Services
 {
     public class PedidoRequestService
     {
-        public Task Execute(PedidoRequest pedidoRequest)
-        {
-            System.Console.WriteLine($"Pedido número: {pedidoRequest.Id} recebido com sucesso!!!");
+        private readonly IPedidoRepository _pedidoRepository;
+        private readonly IAmqpPedidoService _amqpPedidoService;
 
-            return Task.CompletedTask;
+        public PedidoRequestService(IPedidoRepository pedidoRepository, IAmqpPedidoService amqpPedidoService)
+        {
+            _pedidoRepository = pedidoRepository;
+            _amqpPedidoService = amqpPedidoService;
+        }
+
+        public async Task Execute(PedidoRequest pedidoRequest)
+        {
+            var pedido = await _pedidoRepository.Get(pedidoRequest.Id);
+
+            Console.WriteLine($"Pedido número [{pedido?.Numero}] recebido com sucesso!!!");
+
+            pedido?.Processar();
+
+            await _pedidoRepository.Update(pedido);
+
+            await _amqpPedidoService.EmitirNotaFiscal(pedidoRequest);
         }
     }
 }

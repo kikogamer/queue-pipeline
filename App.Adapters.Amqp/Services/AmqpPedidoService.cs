@@ -10,9 +10,14 @@ namespace App.Adapters.Amqp.Services
 
         protected override string ExchangeName => "";
 
-        public async Task Add(PedidoRequest pedidoRequest)
+        public async Task Confirmar(PedidoRequest pedidoRequest)
         {
             await SendAsync(request: pedidoRequest, routingKey: "pedido_create_queue");
+        }
+
+        public async Task EmitirNotaFiscal(PedidoRequest pedidoRequest)
+        {
+            await SendAsync(request: pedidoRequest, routingKey: "nota_fiscal_queue");
         }
     }
 }

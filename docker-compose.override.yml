@@ -35,6 +35,7 @@ services:
       - RABBITMQ__PASSWORD=logPwd
       - RABBITMQ__VIRTUALHOST=main
       - RABBITMQ__ClientProvidedName=Consumer.Pedido
+      - DB__CONNECTION_STRING=Server=postgres;Port=5432;Database=postgres;User Id=postgres;Password=postgres;Include Error Detail=true
     networks:
       - consumer
 

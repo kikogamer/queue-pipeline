@@ -2,6 +2,7 @@
 {
     public interface IAmqpPedidoService
     {
-        Task Add(PedidoRequest pedidoRequest);
+        Task Confirmar(PedidoRequest pedidoRequest);
+        Task EmitirNotaFiscal(PedidoRequest pedidoRequest);
     }
 }

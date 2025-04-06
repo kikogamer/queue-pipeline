@@ -1,7 +1,11 @@
 ﻿using App.Adapters.Amqp.Configuration;
+using App.Adapters.Amqp.Services;
 using App.Adapters.Consumer;
 using App.Core.Business.Contracts;
+using App.Core.Data;
+using App.Core.Repository;
 using Consumer.Pedido.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Consumer.Pedido.Configuration
 {
@@ -9,6 +13,16 @@ namespace Consumer.Pedido.Configuration
     {
         public static HostApplicationBuilder ConfigureWorker(this HostApplicationBuilder builder)
         {
+            var connectionString = builder.Configuration.GetValue<string>("DB:CONNECTION_STRING");
+            builder.Services.AddDbContext<MeuDbContext>(options =>
+            {
+                options.UseNpgsql(connectionString);
+            });
+
+            builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+
+            builder.Services.AddScoped<IAmqpPedidoService, AmqpPedidoService>();
+
             builder.Services.AddTransient<PedidoRequestService>();
 
             builder.Services.AddRabbitMQConfiguration(cfg => cfg.WithConfiguration(builder.Configuration));
