@@ -25,6 +25,38 @@ services:
       - consumer.pedido
       - postgres
 
+  consumer.nota_fiscal:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RABBITMQ__PREFETCHCOUNT=10
+      - RABBITMQ__HOSTNAME=rabbitmq
+      - RABBITMQ__PORT=5672
+      - RABBITMQ__USERNAME=logUser
+      - RABBITMQ__PASSWORD=logPwd
+      - RABBITMQ__VIRTUALHOST=main
+      - RABBITMQ__ClientProvidedName=Consumer.NotaFiscal
+      - DB__CONNECTION_STRING=Server=postgres;Port=5432;Database=postgres;User Id=postgres;Password=postgres;Include Error Detail=true
+    networks:
+      - consumer
+    depends_on:
+      - postgres
+
+  consumer.pagamento:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RABBITMQ__PREFETCHCOUNT=10
+      - RABBITMQ__HOSTNAME=rabbitmq
+      - RABBITMQ__PORT=5672
+      - RABBITMQ__USERNAME=logUser
+      - RABBITMQ__PASSWORD=logPwd
+      - RABBITMQ__VIRTUALHOST=main
+      - RABBITMQ__ClientProvidedName=Consumer.Pagamento
+      - DB__CONNECTION_STRING=Server=postgres;Port=5432;Database=postgres;User Id=postgres;Password=postgres;Include Error Detail=true
+    networks:
+      - consumer
+    depends_on:
+      - postgres
+
   consumer.pedido:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -38,6 +70,8 @@ services:
       - DB__CONNECTION_STRING=Server=postgres;Port=5432;Database=postgres;User Id=postgres;Password=postgres;Include Error Detail=true
     networks:
       - consumer
+    depends_on:
+      - postgres
 
   postgres:
     image: postgres:17.2-alpine

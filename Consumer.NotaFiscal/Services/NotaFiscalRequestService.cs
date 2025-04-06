@@ -19,11 +19,11 @@ namespace Consumer.NotaFiscal.Services
 
             Console.WriteLine($"Pedido número [{pedido?.Numero}] emitindo nota fiscal!!!");
 
-            //pedido?.Processar();
+            pedido?.EmitirNotaFiscal();
 
             await _pedidoRepository.Update(pedido);
 
-            //await _amqpPedidoService.EmitirNotaFiscal(pedidoRequest);
+            await _amqpPedidoService.IniciarEntrega(pedidoRequest);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace App.Adapters.Amqp.Configuration
             await _channel.QueueDeclareAsync($"{appName}_deadletter_queue", true, false, false, null);
             await _channel.QueueBindAsync($"{appName}_deadletter_queue", $"{appName}_deadletter_exchange", string.Empty, null);
 
-            await _channel.ExchangeDeclareAsync($"{appName}_service", "topic", true, false, new Dictionary<string, object>() {
+            await _channel.ExchangeDeclareAsync($"{appName}_service", "topic", true, false, new Dictionary<string, object?>() {
                 { "alternate-exchange", $"{appName}_unrouted_exchange" }
             });
 
@@ -30,7 +30,7 @@ namespace App.Adapters.Amqp.Configuration
                 string routingKey = item.Key;
                 string functionalName = item.Value;
 
-                await _channel.QueueDeclareAsync($"{appName}_{functionalName}_queue", true, false, false, new Dictionary<string, object>() {
+                await _channel.QueueDeclareAsync($"{appName}_{functionalName}_queue", true, false, false, new Dictionary<string, object?>() {
                     { "x-dead-letter-exchange", $"{appName}_retry_exchange" }
                 });
                 await _channel.QueueBindAsync($"{appName}_{functionalName}_queue", $"{appName}_service", routingKey, null);

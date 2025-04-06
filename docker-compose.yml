@@ -5,6 +5,18 @@ services:
       context: .
       dockerfile: WebApp/WebApp.Server/Dockerfile
 
+  consumer.nota_fiscal:
+    image: ${DOCKER_REGISTRY-}consumer-nota-fiscal
+    build:
+      context: .
+      dockerfile: Consumer.NotaFiscal/Dockerfile
+
+  consumer.pagamento:
+    image: ${DOCKER_REGISTRY-}consumer-pagamento
+    build:
+      context: .
+      dockerfile: Consumer.Pagamento/Dockerfile
+
   consumer.pedido:
     image: ${DOCKER_REGISTRY-}consumer-pedido
     build:

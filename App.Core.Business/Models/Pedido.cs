@@ -28,9 +28,19 @@ namespace App.Core.Business.Models
             Status = new PedidoEmAndamento();
         }
 
+        public void EmitirNotaFiscal()
+        {
+            Status.EmitirNotaFiscal(this);
+        }
+
         public void Processar()
         {
             Status.Processar(this);
+        }
+
+        public void ProcessarPagamento()
+        {
+            Status.ProcessarPagamento(this);
         }
     }
 }

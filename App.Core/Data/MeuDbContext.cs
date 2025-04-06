@@ -39,6 +39,8 @@ namespace App.Core.Data
             {
                 nameof(PedidoEmAndamento) => new PedidoEmAndamento(),
                 nameof(PedidoConfirmado) => new PedidoConfirmado(),
+                nameof(PedidoPago) => new PedidoPago(),
+                nameof(PedidoNotaFiscalEmitida) => new PedidoNotaFiscalEmitida(),
                 _ => throw new InvalidOperationException($"Status do Pedido inválido: {state}")
             };
         }
