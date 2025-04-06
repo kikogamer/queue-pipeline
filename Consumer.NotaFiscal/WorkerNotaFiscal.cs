@@ -1,15 +1,14 @@
-
 using App.Adapters.Amqp.Configuration;
 using RabbitMQ.Client;
 
-namespace Consumer.Pedido
+namespace Consumer.NotaFiscal
 {
-    public class WorkerPedido : BackgroundService
+    public class WorkerNotaFiscal : BackgroundService
     {
-        private readonly ILogger<WorkerPedido> _logger;
+        private readonly ILogger<WorkerNotaFiscal> _logger;
         private readonly ConfigureRabbitMQRoutes _configureRoutes;
 
-        public WorkerPedido(ILogger<WorkerPedido> logger, IChannel channel)
+        public WorkerNotaFiscal(ILogger<WorkerNotaFiscal> logger, IChannel channel)
         {
             _logger = logger;
             _configureRoutes = new ConfigureRabbitMQRoutes(channel);
@@ -17,7 +16,7 @@ namespace Consumer.Pedido
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _configureRoutes.CreateUnroutedSchema("pedido", new Dictionary<string, string> {
+            _configureRoutes.CreateUnroutedSchema("nota_fiscal", new Dictionary<string, string> {
                 { "create", "create" }
             });
 

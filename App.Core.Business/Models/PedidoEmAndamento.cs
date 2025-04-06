@@ -2,6 +2,11 @@
 {
     public class PedidoEmAndamento : PedidoState
     {
+        public override void EmitirNotaFiscal(Pedido pedido)
+        {
+            throw new InvalidOperationException("O pedido ainda não foi confirmado!");
+        }
+
         public override void Processar(Pedido pedido)
         {
             Console.WriteLine($"Consultando saldo em estoque para o pedido: {pedido.Numero}.");
@@ -9,6 +14,11 @@
             Console.WriteLine($"O Pedido {pedido.Numero} foi criado com sucesso, enviando para processar o pagamento!");
 
             pedido.Status = new PedidoConfirmado();
+        }
+
+        public override void ProcessarPagamento(Pedido pedido)
+        {
+            throw new InvalidOperationException("O pedido ainda não foi confirmado!");
         }
     }
 }

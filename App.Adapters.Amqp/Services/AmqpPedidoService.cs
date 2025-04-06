@@ -17,7 +17,7 @@ namespace App.Adapters.Amqp.Services
 
         public async Task EmitirNotaFiscal(PedidoRequest pedidoRequest)
         {
-            await SendAsync(request: pedidoRequest, routingKey: "nota_fiscal_queue");
+            await SendAsync(request: pedidoRequest, routingKey: "nota_fiscal_create_queue");
         }
     }
 }

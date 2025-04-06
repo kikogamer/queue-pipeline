@@ -27,6 +27,8 @@ namespace App.Adapters.Consumer
 
             IAsyncBasicConsumer consumer = BuildConsumer();
 
+            if (consumer == null || consumer.Channel == null) return;
+
             await WaitQueueCreation();
 
             string consumerTag = await consumer.Channel.BasicConsumeAsync(queue: this.QueueName, autoAck: false, consumer: consumer);
