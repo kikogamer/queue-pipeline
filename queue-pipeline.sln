@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer.NotaFiscal", "Cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer.Pagamento", "Consumer.Pagamento\Consumer.Pagamento.csproj", "{FCDAD6C2-DE91-4BC5-82A0-7727AF42EF2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer.Entrega", "Consumer.Entrega\Consumer.Entrega.csproj", "{C44E6CCF-C38A-4C75-86F7-F848C59C0E61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{FCDAD6C2-DE91-4BC5-82A0-7727AF42EF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCDAD6C2-DE91-4BC5-82A0-7727AF42EF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCDAD6C2-DE91-4BC5-82A0-7727AF42EF2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44E6CCF-C38A-4C75-86F7-F848C59C0E61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44E6CCF-C38A-4C75-86F7-F848C59C0E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44E6CCF-C38A-4C75-86F7-F848C59C0E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44E6CCF-C38A-4C75-86F7-F848C59C0E61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

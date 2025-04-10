@@ -82,6 +82,10 @@ const Checkout: React.FC = () => {
                 return;
             }
 
+            dispatch({
+                type: "CLEAR_CART",
+                payload: undefined
+            });
             alert("Pedido realizado com sucesso!");
             navigate("/");
 

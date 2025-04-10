@@ -5,6 +5,12 @@ services:
       context: .
       dockerfile: WebApp/WebApp.Server/Dockerfile
 
+  consumer.entrega:
+    image: ${DOCKER_REGISTRY-}consumer-entrega
+    build:
+      context: .
+      dockerfile: Consumer.Entrega/Dockerfile
+
   consumer.nota_fiscal:
     image: ${DOCKER_REGISTRY-}consumer-nota-fiscal
     build:

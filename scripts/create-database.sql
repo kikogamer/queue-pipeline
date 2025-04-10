@@ -51,3 +51,77 @@ BEGIN
 END $EF$;
 COMMIT;
 
+START TRANSACTION;
+
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20250329195627_Pedidoitem') THEN
+    ALTER TABLE "Pedidos" ADD "Frete" numeric NOT NULL DEFAULT 0.0;
+    END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20250329195627_Pedidoitem') THEN
+    ALTER TABLE "Pedidos" ADD "Imposto" numeric NOT NULL DEFAULT 0.0;
+    END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20250329195627_Pedidoitem') THEN
+    CREATE TABLE "PedidoItem" (
+        "Id" uuid NOT NULL,
+        "PedidoId" uuid NOT NULL,
+        "ProdutoId" uuid NOT NULL,
+        "Quantidade" integer NOT NULL,
+        CONSTRAINT "PK_PedidoItem" PRIMARY KEY ("Id"),
+        CONSTRAINT "FK_PedidoItem_Pedidos_PedidoId" FOREIGN KEY ("PedidoId") REFERENCES "Pedidos" ("Id") ON DELETE CASCADE,
+        CONSTRAINT "FK_PedidoItem_Produtos_ProdutoId" FOREIGN KEY ("ProdutoId") REFERENCES "Produtos" ("Id") ON DELETE CASCADE
+    );
+    END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20250329195627_Pedidoitem') THEN
+    CREATE INDEX "IX_PedidoItem_PedidoId" ON "PedidoItem" ("PedidoId");
+    END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20250329195627_Pedidoitem') THEN
+    CREATE INDEX "IX_PedidoItem_ProdutoId" ON "PedidoItem" ("ProdutoId");
+    END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20250329195627_Pedidoitem') THEN
+    INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+    VALUES ('20250329195627_Pedidoitem', '8.0.14');
+    END IF;
+END $EF$;
+COMMIT;
+
+START TRANSACTION;
+
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20250405224157_pedido-status') THEN
+    ALTER TABLE "Pedidos" ADD "Status" text NOT NULL DEFAULT '';
+    END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20250405224157_pedido-status') THEN
+    INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+    VALUES ('20250405224157_pedido-status', '8.0.14');
+    END IF;
+END $EF$;
+COMMIT;
+

@@ -20,6 +20,11 @@ namespace App.Adapters.Amqp.Services
             await SendAsync(request: pedidoRequest, routingKey: "nota_fiscal_create_queue");
         }
 
+        public async Task FinalizarEntrega(PedidoRequest pedidoRequest)
+        {
+            await SendAsync(request: pedidoRequest, routingKey: "entrega_close_queue");
+        }
+
         public async Task IniciarEntrega(PedidoRequest pedidoRequest)
         {
             await SendAsync(request: pedidoRequest, routingKey: "entrega_create_queue");

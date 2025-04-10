@@ -40,6 +40,8 @@ const carrinhoReducer = (state: typeof initialState, action: { type: string; pay
   switch (action.type) {
     case "ADD_TO_CART":
       return { ...state, carrinho: addItem(state, action.payload) };
+    case "CLEAR_CART":
+      return { ...state, carrinho: [] };
     case "REMOVE_FROM_CART":
       return { ...state, carrinho: state.carrinho.filter((item: CarrinhoItem) => item !== action.payload) };
     case "TOGGLE_CART": 

@@ -33,6 +33,16 @@ namespace App.Core.Business.Models
             Status.EmitirNotaFiscal(this);
         }
 
+        public void EncerrarEntrega()
+        {
+            Status.EncerrarEntrega(this);
+        }
+
+        public void IniciarEntrega()
+        {
+            Status.IniciarEntrega(this);
+        }
+
         public void Processar()
         {
             Status.Processar(this);

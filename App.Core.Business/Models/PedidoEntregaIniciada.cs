@@ -1,6 +1,6 @@
 ﻿namespace App.Core.Business.Models
 {
-    public class PedidoNotaFiscalEmitida : PedidoState
+    public class PedidoEntregaIniciada : PedidoState
     {
         public override void EmitirNotaFiscal(Pedido pedido)
         {
@@ -9,15 +9,16 @@
 
         public override void EncerrarEntrega(Pedido pedido)
         {
-            throw new InvalidOperationException("O pedido ainda não teve sua entrega iniciada!");
+            Console.WriteLine($"Encerrando Entrega para o pedido: {pedido.Numero}.");
+            Console.WriteLine($"Entrega encerrada com sucesso para o pedido {pedido.Numero}!");
+            Console.WriteLine("Pedido foi finalizado!");
+
+            pedido.Status = new PedidoFinalizado();
         }
 
         public override void IniciarEntrega(Pedido pedido)
         {
-            Console.WriteLine($"Iniciando Entrega para o pedido: {pedido.Numero}.");
-            Console.WriteLine($"Entrega iniciada com sucesso para o pedido {pedido.Numero}!");
-
-            pedido.Status = new PedidoEntregaIniciada();
+            throw new InvalidOperationException("Entrega do Pedido já foi iniciada!");
         }
 
         public override void Processar(Pedido pedido)

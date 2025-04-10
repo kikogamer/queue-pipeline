@@ -10,6 +10,16 @@
             pedido.Status = new PedidoNotaFiscalEmitida();
         }
 
+        public override void EncerrarEntrega(Pedido pedido)
+        {
+            throw new InvalidOperationException("O pedido ainda não teve sua entrega iniciada!");
+        }
+
+        public override void IniciarEntrega(Pedido pedido)
+        {
+            throw new InvalidOperationException("O pedido ainda não teve sua nota fiscal emitida!");
+        }
+
         public override void Processar(Pedido pedido)
         {
             throw new InvalidOperationException("O pedido já está confirmado!");
